@@ -1,0 +1,11 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-config
+data:
+  client-max-body-size: 20m
+  hsts: "false"
+  keep-alive: "30"
+  proxy-body-size: 20m
+  server-tokens: "false"
+  use-gzip: "true"

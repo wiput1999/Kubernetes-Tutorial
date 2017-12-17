@@ -1,0 +1,31 @@
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: nginx-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.allow-http: "false"
+spec:
+  rules:
+  - host: psit.wiput.me
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: echoserver
+          servicePort: 80
+  - host: wiput.me
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: echoserver
+          servicePort: 80
+  tls:
+  - secretName: wiput-me-tls
+    hosts:
+    - wiput.me
+  - secretName: psit-wiput-me-tls
+    hosts:
+    - psit.wiput.me

@@ -1,0 +1,21 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: redis-config
+data:
+  redis.conf: |
+    databases 1
+    save ""
+    appendonly no
+    maxmemory 2mb
+    maxmemory-policy allkeys-lru
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: redis
+spec:
+  selector:
+    app: redis
+  ports:
+  - port: 6379
